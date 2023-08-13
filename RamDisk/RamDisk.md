@@ -2,9 +2,9 @@ Note! use can use big swap file with seperated partition
 
 ***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***
 
----------------------------tempfs--------------------------------------------
-ramdisk 
+# Make TempFS Ramdisk
 
+```
 mkdir -p /tmp/ramdisk
 
 mount -t tmpfs -o size=65536M tmpfs /tmp/ramdisk
@@ -17,7 +17,7 @@ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 
 # test read speed
 sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
-
+```
 ------------fstab---------------------------------------------------------------
 
 sudo nano /etc/fstab
