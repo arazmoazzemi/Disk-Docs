@@ -1,5 +1,6 @@
-###########################use big swap file with seperated partition
-# https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html
+Note! use can use big swap file with seperated partition
+
+***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***
 
 ---------------------------tempfs--------------------------------------------
 ramdisk 
