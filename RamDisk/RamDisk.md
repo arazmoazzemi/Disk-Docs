@@ -29,7 +29,9 @@ $ myramdisk  /tmp/ramdisk  tmpfs  defaults,size=32G,x-gvfs-show  0  0
 $ sudo mount -a
 
 ```
---------------------Using RAM Disk to Reduce SSD Wear Out--------------------------------------------------------
+# Example For Using RAM Disk to Reduce SSD Wear Out
+
+```
 
 # Packages
 package_archive   /var/cache/apt/archives   tmpfs   defaults,size=6G   0   0
@@ -45,6 +47,7 @@ nginx_logs     /var/log/nginx/      tmpfs     defaults,size=6G    0    0
 
 mount -a
 
+```
 
 
 
