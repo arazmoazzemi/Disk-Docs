@@ -2,7 +2,7 @@ Note! use can use big swap file with seperated partition
 
 ***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***
 
-# Make TempFS Ramdisk
+# Make TempFS Ramdisk :
 
 ```
 $ mkdir -p /tmp/ramdisk
@@ -19,12 +19,16 @@ $ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 $ sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
 ```
-------------fstab---------------------------------------------------------------
 
-sudo nano /etc/fstab
-myramdisk  /tmp/ramdisk  tmpfs  defaults,size=32G,x-gvfs-show  0  0
-sudo mount -a
+Make TempFS Ramsk, With fstab File :
 
+```
+
+$ sudo nano /etc/fstab
+$ myramdisk  /tmp/ramdisk  tmpfs  defaults,size=32G,x-gvfs-show  0  0
+$ sudo mount -a
+
+```
 --------------------Using RAM Disk to Reduce SSD Wear Out--------------------------------------------------------
 
 # Packages
