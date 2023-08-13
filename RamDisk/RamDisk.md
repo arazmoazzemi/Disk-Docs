@@ -29,6 +29,8 @@ $ myramdisk  /tmp/ramdisk  tmpfs  defaults,size=32G,x-gvfs-show  0  0
 $ sudo mount -a
 
 ```
+=======================================================================
+
 # Example For Using RAM Disk to Reduce SSD Wear Out
 
 ```
@@ -51,7 +53,6 @@ mount -a
 
 
 
-------------------------------------------------------------------------------
 
 
 
