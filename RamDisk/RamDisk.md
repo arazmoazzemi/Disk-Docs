@@ -115,8 +115,8 @@ virt-install \
   --network bridge=virbr0,model=virtio \
   --boot hd
 ```
----------------ZRAM-----compressed  and decompressed ---------------------------------
 
+# ZRAM Compressed & decompressed 
 
 ***Another option for a RAM Disks is zram. When you place a file onto a zram RAM disk,
 the file gets quickly compressed during the transfer and it is transparently decompress during the retrieval.
