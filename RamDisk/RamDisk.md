@@ -5,18 +5,19 @@ Note! use can use big swap file with seperated partition
 # Make TempFS Ramdisk
 
 ```
-mkdir -p /tmp/ramdisk
+$ mkdir -p /tmp/ramdisk
 
-mount -t tmpfs -o size=65536M tmpfs /tmp/ramdisk
+$ mount -t tmpfs -o size=65536M tmpfs /tmp/ramdisk
 
 # 65536
 
 
 # test wite speed
-sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
+$ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 
 # test read speed
-sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
+$ sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
+
 ```
 ------------fstab---------------------------------------------------------------
 
