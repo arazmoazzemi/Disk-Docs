@@ -32,7 +32,7 @@ $ sudo mount -a
 
 ========================================================================================
 
-\\\\Example For Using RAM Disk to Reduce SSD Wear Out
+# Example For Using RAM Disk to Reduce SSD Wear Out
 
 ```
 
@@ -54,54 +54,28 @@ mount -a
 ========================================================================================
 
 
+# Make block ram disk (brd)
 
-
-
-
-sudo mkdir -p /media/ramdisk
-sudo mount -t tmpfs -o size=2048M tmpfs /media/ramdisk
-
-sudo chmod 1777 /media/ramdisk
-
-
-
-grep /media/ramdisk /etc/mtab | sudo tee -a /etc/fstab
-tmpfs /media/ramdisk tmpfs rw,size=32768 0 0
-# 65536
-
-
-# Check the existing ramdisk size.
-df /media/ramdisk
-# change size=512M for a 512 megabyte ram drive.
-sudo vi /etc/fstab
-# Remount the ramdisk, you will lose any existing content.
-sudo mount -a /media/ramdisk
-# Verify the new ramdisk size.
-df /media/ramdisk
-
-
---------------brd------(block ram disk)---------------------------------------------------------
-
-
-# he RAM Disk is created when the "brd" module is loaded (brd=block ram disk)
+***The RAM Disk is created when the "brd" module is loaded (brd=block ram disk)***
 
   modprobe brd
 
-# This has three parameters.  If no parameters are used you get the defaults.
+****This has three parameters.  If no parameters are used you get the defaults***
 
   rd_nr : Maximum number of brd devices
   rd_size : Size of each RAM disk in kbytes.
   max_part : Maximum number of partitions per RAM disk
 
-# For example if you want one 1GB RAM Disk that can have two partitions you would use:
+***For example if you want one 1GB RAM Disk that can have two partitions you would use****
 
   modprobe brd rd_size=1024000 max_part=2 rd_nr=1
 
-# The RAM Disk will then be in /dev/ram*
-# You can then partition it as needed up to the max number of partitions.
-# Then put a file system on it and mount it and your ready to use your RAM Disk.
+***The RAM Disk will then be in /dev/ram****
+****You can then partition it as needed up to the max number of partitions***
+***Then put a file system on it and mount it and your ready to use your RAM Disk***
 
-----------------------------------------------------------------------------------
+```
+
 modprobe brd
 
 modprobe brd rd_size=10240000 
@@ -124,6 +98,8 @@ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
 sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+
+```
 
 ------------------------vga installation-----------------------------
 virt-install \
