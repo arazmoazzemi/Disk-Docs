@@ -160,23 +160,3 @@ $ sudo chattr -i /tmp/ramdisk
 
 # Now you can delete the folder:
 $ rm -rf /tmp/ramdisk
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
