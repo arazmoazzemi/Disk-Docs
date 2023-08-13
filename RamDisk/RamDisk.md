@@ -2,7 +2,7 @@ Note! use can use big swap file with seperated partition
 
 ***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***
 
-# Make TempFS Ramdisk :
+# Make TempFS Ramdisk:
 
 ```
 $ mkdir -p /tmp/ramdisk
@@ -20,7 +20,7 @@ $ sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
 ```
 
-Make TempFS Ramsk, With fstab File :
+***Make TempFS Ramsk, With fstab File :***
 
 ```
 
@@ -32,7 +32,7 @@ $ sudo mount -a
 
 ========================================================================================
 
-# Example For Using RAM Disk to Reduce SSD Wear Out
+# Example For Using RAM Disk to Reduce SSD Wear Out {Paxkeges/Logs}:
 
 ```
 
@@ -47,14 +47,13 @@ systemd_journal   /var/log/journal       tmpfs      defaults,size=6G    0    0
 # Nginx
 nginx_logs     /var/log/nginx/      tmpfs     defaults,size=6G    0    0
 
-
 mount -a
 
 ```
 ========================================================================================
 
 
-# Make block ram disk (brd)
+# Make block ram disk (brd):
 
 ***The RAM Disk is created when the "brd" module is loaded (brd=block ram disk)***
 
@@ -76,32 +75,32 @@ mount -a
 
 ```
 
-modprobe brd
+$ modprobe brd
 
-modprobe brd rd_size=10240000 
+$ modprobe brd rd_size=10240000 
 
-sudo mkfs /dev/ram0
+$ sudo mkfs /dev/ram0
 # sudo mkfs.xfs /dev/ram0
 
-mkdir /tmp/ramdisk
-sudo mount /dev/ram0 /tmp/ramdisk
+$ mkdir /tmp/ramdisk
+$ sudo mount /dev/ram0 /tmp/ramdisk
 
-df -h
+$ df -h
 
 # umount /tmp/ramdisk
 # modprobe -r brd 
 
 # test wite speed
-sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
+$ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 
 # test read speed
 sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
-sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+$ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 
 ```
 
-Install on kvm
+Install a vm on kvm host:
 
 ```
 virt-install \
@@ -116,7 +115,7 @@ virt-install \
   --boot hd
 ```
 
-# ZRAM Compressed & decompressed 
+# ZRAM Compressed & decompressed: 
 
 ***Another option for a RAM Disks is zram. When you place a file onto a zram RAM disk,
 the file gets quickly compressed during the transfer and it is transparently decompress during the retrieval.
