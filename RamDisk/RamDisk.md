@@ -101,7 +101,9 @@ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 
 ```
 
-------------------------vga installation-----------------------------
+Install on kvm
+
+```
 virt-install \
   --name ramdisk-test \
   --connect=qemu:///system \
@@ -112,48 +114,52 @@ virt-install \
   --cdrom /var/lib/libvirt/isos/ubuntu-22.04.2-live-server-amd64.iso 
   --network bridge=virbr0,model=virtio \
   --boot hd
-
+```
 ---------------ZRAM-----compressed  and decompressed ---------------------------------
 
 
-# Another option for a RAM Disks is zram. When you place a file onto a zram RAM disk, the file gets quickly compressed during the transfer and it is transparently decompress during the retrieval. This can be helpful in circumstances where your system doesn't quite have the amount of RAM you desire for your RAM disk.
+***Another option for a RAM Disks is zram. When you place a file onto a zram RAM disk,
+the file gets quickly compressed during the transfer and it is transparently decompress during the retrieval.
+This can be helpful in circumstances where your system doesn't quite have the amount of RAM you desire for your RAM disk.***
 
-# Here's how to create a zram RAM disk:
+***Here's how to create a zram RAM disk:***
 
+```
 # Make a folder to which you will mount your RAM disk:
-sudo mkdir /tmp/ramdisk 
+
+$ sudo mkdir /tmp/ramdisk 
 
 # Change the ownership of that folder, so your user will have full access to the RAM disk when we later mount it:
-sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+$ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 
 # Make the folder immutable so you don't ever accidentally fill up your OS partition with data intended for the RAM disk:
-sudo chattr +i /tmp/ramdisk
+s$ udo chattr +i /tmp/ramdisk
 
 # Load the zram module:
-sudo modprobe zram
+$ sudo modprobe zram
 
 # Create a 1GB ram disk:
-sudo zramctl --find --size 1G
+$ sudo zramctl --find --size 1G
 
 # The command above will output the device path of the RAM disk you've created. It will most likely be /dev/zram0, and that's what we'll assume going forward.
 # Format the RAM disk to EXT4:
-sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
+$ sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
 
 # Mount the RAM disk to the immutable mount point folder we created:
-sudo mount /dev/zram0 /tmp/ramdisk
+$ sudo mount /dev/zram0 /tmp/ramdisk
 
 # Now you should be able to move files to and from the RAM disk located at /tmp/ramdisk/.
 #If you're done playing with it, unmount it:
-sudo umount /tmp/ramdisk/
+$ sudo umount /tmp/ramdisk/
 
 # Lastly, lets destroy the RAM disk and free up any memory it was using:
-sudo zramctl --reset /dev/zram0
+$ sudo zramctl --reset /dev/zram0
 
 # If you also want to remove the the folder /tmp/ramdisk, first make it mutable:
-sudo chattr -i /tmp/ramdisk
+$ sudo chattr -i /tmp/ramdisk
 
 # Now you can delete the folder:
-rm -rf /tmp/ramdisk
+$ rm -rf /tmp/ramdisk
 
 
 
