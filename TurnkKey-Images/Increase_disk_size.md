@@ -1,4 +1,7 @@
-ttps://www.turnkeylinux.org/forum/support/thu-20200903-1526/screwed-disk-resizing-lv
+# Turnkey images
+
+```
+# https://www.turnkeylinux.org/forum/support/thu-20200903-1526/screwed-disk-resizing-lv
 
 cfdisk -L /dev/sda
 
@@ -11,7 +14,7 @@ resize2fs /dev/turnkey/root
 df -h /
 
 
----------------------ubuntu------------
+-----------ubuntu------------
 
 lvm
 lvm> lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
@@ -19,3 +22,5 @@ lvm> exit
 
 
 resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+```
