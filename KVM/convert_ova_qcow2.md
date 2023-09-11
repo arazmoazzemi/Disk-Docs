@@ -1,4 +1,8 @@
+
+
+'''cmd
 scp tar -xfv PNET_4.2.10.ova <user@password:/home/it>
+```
 
 tar -xfv PNET_4.2.10.ova
 
