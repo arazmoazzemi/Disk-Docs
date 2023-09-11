@@ -1,3 +1,4 @@
+```bash
 virt-install \
   --name ubuntu-desktop \
   --connect=qemu:///system \
@@ -8,3 +9,4 @@ virt-install \
   --cdrom /var/lib/libvirt/isos/ubuntu-22.04.2-desktop-amd64.iso 
   --network bridge=virbr0,model=virtio \
   --boot hd
+```
