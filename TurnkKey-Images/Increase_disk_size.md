@@ -14,8 +14,9 @@ resize2fs /dev/turnkey/root
 df -h /
 ```
 
------------ubuntu------------
+ubuntu
 
+```bash
 lvm
 lvm> lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 lvm> exit
