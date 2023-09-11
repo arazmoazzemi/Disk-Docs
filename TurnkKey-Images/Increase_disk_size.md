@@ -12,7 +12,7 @@ lvextend -l +100%FREE /dev/turnkey/root
 resize2fs /dev/turnkey/root
 
 df -h /
-
+```
 
 -----------ubuntu------------
 
