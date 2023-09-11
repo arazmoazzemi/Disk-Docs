@@ -1,4 +1,4 @@
-# Convett OVA disk images to qcow2:
+# Convert OVA disk images to qcow2:
 
 Copy source images from windows host to linux host:
 
