@@ -1,8 +1,11 @@
 # Convett OVA disk images to qcow2:
 
+Copy source images from windows host to linux host:
+
 ```cmd
 scp tar -xfv PNET_4.2.10.ova <user@password:/home/it>
 ```
+
 
 ```bash
 tar -xfv PNET_4.2.10.ova
