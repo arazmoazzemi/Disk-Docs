@@ -1,9 +1,8 @@
 # Increase Turnkey Disk Size images:
+
 [Help](https://www.turnkeylinux.org/forum/support/thu-20200903-1526/screwed-disk-resizing-lv)
 
-```
-
-
+```bash
 cfdisk -L /dev/sda
 
 pvresize /dev/sda1
