@@ -6,16 +6,12 @@ Note! use can use big swap file with seperated partition
 - ### [TempFS RamDisk](https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html)
 
 ---
-
 # Make TempFS Ramdisk:
 
 ```bash
 $ mkdir -p /tmp/ramdisk
-
 $ mount -t tmpfs -o size=65536M tmpfs /tmp/ramdisk
-
 # 65536
-
 
 # test wite speed
 $ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
