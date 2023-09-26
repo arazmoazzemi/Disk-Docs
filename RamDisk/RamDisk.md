@@ -55,6 +55,7 @@ mount -a
 
 # Make block ram disk (brd):
 
+```bash
 ***The RAM Disk is created when the "brd" module is loaded (brd=block ram disk)***
 
   modprobe brd
