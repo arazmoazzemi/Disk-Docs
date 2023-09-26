@@ -21,7 +21,7 @@ $ sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
 ```
 
-- ### ***Make TempFS Ramsk, With fstab File :***
+- ### ***Make TempFS Ramsk, With FSTAB File :***
 
 ```bash
 
