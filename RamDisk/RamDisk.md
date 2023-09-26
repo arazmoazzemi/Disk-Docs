@@ -1,8 +1,10 @@
 ### Make a ramdisk server:
 
+---
 Note! use can use big swap file with seperated partition
 
 ***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***
+---
 
 # Make TempFS Ramdisk:
 
