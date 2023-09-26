@@ -21,9 +21,9 @@ $ sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
 ```
 
-***Make TempFS Ramsk, With fstab File :***
+- ### ***Make TempFS Ramsk, With fstab File :***
 
-```
+```bash
 
 $ sudo nano /etc/fstab
 $ myramdisk  /tmp/ramdisk  tmpfs  defaults,size=32G,x-gvfs-show  0  0
