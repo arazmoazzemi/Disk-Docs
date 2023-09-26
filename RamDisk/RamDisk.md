@@ -31,11 +31,11 @@ $ sudo mount -a
 
 ```
 
-========================================================================================
+----
 
-# Example For Using RAM Disk to Reduce SSD Wear Out {Paxkeges/Logs}:
+- ### Example For Using RAM Disk to Reduce SSD Wear Out {Paxkeges/Logs}:
 
-```
+```bash
 
 # Packages
 package_archive   /var/cache/apt/archives   tmpfs   defaults,size=6G   0   0
