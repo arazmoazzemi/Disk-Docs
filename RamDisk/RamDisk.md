@@ -6,7 +6,7 @@ Note! use can use big swap file with seperated partition
 
 # Make TempFS Ramdisk:
 
-```
+```bash
 $ mkdir -p /tmp/ramdisk
 
 $ mount -t tmpfs -o size=65536M tmpfs /tmp/ramdisk
