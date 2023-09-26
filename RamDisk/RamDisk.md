@@ -3,7 +3,7 @@
 ---
 Note! use can use big swap file with seperated partition
 
-- ### [TempFS RamDisk](***https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html***)
+- ### [TempFS RamDisk](https://www.kernel.org/doc/html/v5.7/filesystems/tmpfs.html)
 
 ---
 
