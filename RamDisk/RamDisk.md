@@ -74,7 +74,7 @@ modprobe brd rd_size=1024000 max_part=2 rd_nr=1
 ****You can then partition it as needed up to the max number of partitions***
 ***Then put a file system on it and mount it and your ready to use your RAM Disk***
 
-```bash
+```
 
 modprobe brd
 
