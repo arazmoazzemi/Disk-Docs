@@ -1,4 +1,4 @@
-### Make a ramdisk server:
+### Make a ramdisk server🥇
 
 ---
 Note! use can use big swap file with seperated partition
