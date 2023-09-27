@@ -173,8 +173,10 @@ sudo umount /tmp/ramdisk/
 sudo zramctl --reset /dev/zram0
 ```
 
-# If you also want to remove the the folder /tmp/ramdisk, first make it mutable:
-$ sudo chattr -i /tmp/ramdisk
+- If you also want to remove the the folder /tmp/ramdisk, first make it mutable:
+```bash
+sudo chattr -i /tmp/ramdisk
+```
 
 # Now you can delete the folder:
 $ rm -rf /tmp/ramdisk
