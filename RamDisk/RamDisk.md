@@ -141,8 +141,10 @@ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 sudo chattr +i /tmp/ramdisk
 ```
 
-# Load the zram module:
-$ sudo modprobe zram
+- Load the zram module:
+```bash
+sudo modprobe zram
+```
 
 # Create a 1GB ram disk:
 $ sudo zramctl --find --size 1G
