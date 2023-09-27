@@ -131,7 +131,7 @@ This can be helpful in circumstances where your system doesn't quite have the am
 $ sudo mkdir /tmp/ramdisk 
 ```
 
-- Change the ownership of that folder, so your user will have full access to the RAM disk when we later mount it:
+- 2.Change the ownership of that folder, so your user will have full access to the RAM disk when we later mount it:
 ```bash
 sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 ```
