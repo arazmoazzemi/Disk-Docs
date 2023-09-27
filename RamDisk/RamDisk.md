@@ -74,19 +74,19 @@ modprobe brd rd_size=1024000 max_part=2 rd_nr=1
 ****You can then partition it as needed up to the max number of partitions***
 ***Then put a file system on it and mount it and your ready to use your RAM Disk***
 
-```
+```bash
 
-$ modprobe brd
+modprobe brd
 
-$ modprobe brd rd_size=10240000 
+modprobe brd rd_size=10240000 
 
-$ sudo mkfs /dev/ram0
-# sudo mkfs.xfs /dev/ram0
+sudo mkfs /dev/ram0
+sudo mkfs.xfs /dev/ram0
 
-$ mkdir /tmp/ramdisk
-$ sudo mount /dev/ram0 /tmp/ramdisk
+mkdir /tmp/ramdisk
+sudo mount /dev/ram0 /tmp/ramdisk
 
-$ df -h
+df -h
 
 # umount /tmp/ramdisk
 # modprobe -r brd 
@@ -97,7 +97,7 @@ $ sudo dd if=/dev/zero of=/tmp/ramdisk/zero bs=4k count=100000
 # test read speed
 sudo dd if=/tmp/ramdisk/zero of=/dev/null bs=4k count=100000
 
-$ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 
 ```
 
