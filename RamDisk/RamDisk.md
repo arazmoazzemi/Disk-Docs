@@ -162,9 +162,11 @@ sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
 sudo mount /dev/zram0 /tmp/ramdisk
 ```
 
-# Now you should be able to move files to and from the RAM disk located at /tmp/ramdisk/.
-#If you're done playing with it, unmount it:
-$ sudo umount /tmp/ramdisk/
+- Now you should be able to move files to and from the RAM disk located at /tmp/ramdisk/.
+- If you're done playing with it, unmount it:
+```bash
+sudo umount /tmp/ramdisk/
+```
 
 # Lastly, lets destroy the RAM disk and free up any memory it was using:
 $ sudo zramctl --reset /dev/zram0
