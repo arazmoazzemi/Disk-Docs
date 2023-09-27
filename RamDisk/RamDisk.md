@@ -58,17 +58,17 @@ mount -a
 ```bash
 ***The RAM Disk is created when the "brd" module is loaded (brd=block ram disk)***
 
-  modprobe brd
+modprobe brd
 
 ****This has three parameters.  If no parameters are used you get the defaults***
 
-  rd_nr : Maximum number of brd devices
-  rd_size : Size of each RAM disk in kbytes.
-  max_part : Maximum number of partitions per RAM disk
+rd_nr : Maximum number of brd devices
+rd_size : Size of each RAM disk in kbytes.
+max_part : Maximum number of partitions per RAM disk
 
 ***For example if you want one 1GB RAM Disk that can have two partitions you would use****
 
-  modprobe brd rd_size=1024000 max_part=2 rd_nr=1
+modprobe brd rd_size=1024000 max_part=2 rd_nr=1
 
 ***The RAM Disk will then be in /dev/ram****
 ****You can then partition it as needed up to the max number of partitions***
