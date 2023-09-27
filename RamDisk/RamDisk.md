@@ -146,8 +146,10 @@ sudo chattr +i /tmp/ramdisk
 sudo modprobe zram
 ```
 
-# Create a 1GB ram disk:
-$ sudo zramctl --find --size 1G
+- Create a 1GB ram disk:
+```bash
+sudo zramctl --find --size 1G
+```
 
 # The command above will output the device path of the RAM disk you've created. It will most likely be /dev/zram0, and that's what we'll assume going forward.
 # Format the RAM disk to EXT4:
