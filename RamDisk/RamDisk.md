@@ -136,8 +136,10 @@ $ sudo mkdir /tmp/ramdisk
 sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
 ```
 
-# Make the folder immutable so you don't ever accidentally fill up your OS partition with data intended for the RAM disk:
-s$ udo chattr +i /tmp/ramdisk
+- Make the folder immutable so you don't ever accidentally fill up your OS partition with data intended for the RAM disk:
+```bash
+sudo chattr +i /tmp/ramdisk
+```
 
 # Load the zram module:
 $ sudo modprobe zram
