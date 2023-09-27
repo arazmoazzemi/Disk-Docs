@@ -178,5 +178,7 @@ sudo zramctl --reset /dev/zram0
 sudo chattr -i /tmp/ramdisk
 ```
 
-# Now you can delete the folder:
-$ rm -rf /tmp/ramdisk
+- Now you can delete the folder:
+```bash
+rm -rf /tmp/ramdisk
+```
