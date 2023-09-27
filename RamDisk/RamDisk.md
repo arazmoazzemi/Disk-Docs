@@ -76,6 +76,7 @@ modprobe brd rd_size=1024000 max_part=2 rd_nr=1
 
 ```
 
+```bash
 modprobe brd
 
 modprobe brd rd_size=10240000 
