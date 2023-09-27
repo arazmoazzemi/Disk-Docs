@@ -157,8 +157,10 @@ sudo zramctl --find --size 1G
 sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
 ```
 
-# Mount the RAM disk to the immutable mount point folder we created:
-$ sudo mount /dev/zram0 /tmp/ramdisk
+- Mount the RAM disk to the immutable mount point folder we created:
+```bash
+sudo mount /dev/zram0 /tmp/ramdisk
+```
 
 # Now you should be able to move files to and from the RAM disk located at /tmp/ramdisk/.
 #If you're done playing with it, unmount it:
