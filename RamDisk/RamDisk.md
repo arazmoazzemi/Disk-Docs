@@ -168,8 +168,10 @@ sudo mount /dev/zram0 /tmp/ramdisk
 sudo umount /tmp/ramdisk/
 ```
 
-# Lastly, lets destroy the RAM disk and free up any memory it was using:
-$ sudo zramctl --reset /dev/zram0
+- Lastly, lets destroy the RAM disk and free up any memory it was using:
+```bash
+sudo zramctl --reset /dev/zram0
+```
 
 # If you also want to remove the the folder /tmp/ramdisk, first make it mutable:
 $ sudo chattr -i /tmp/ramdisk
