@@ -151,9 +151,11 @@ sudo modprobe zram
 sudo zramctl --find --size 1G
 ```
 
-# The command above will output the device path of the RAM disk you've created. It will most likely be /dev/zram0, and that's what we'll assume going forward.
-# Format the RAM disk to EXT4:
-$ sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
+- The command above will output the device path of the RAM disk you've created. It will most likely be /dev/zram0, and that's what we'll assume going forward.
+- Format the RAM disk to EXT4:
+```bash
+sudo mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
+```
 
 # Mount the RAM disk to the immutable mount point folder we created:
 $ sudo mount /dev/zram0 /tmp/ramdisk
