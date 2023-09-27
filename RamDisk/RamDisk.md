@@ -116,7 +116,7 @@ virt-install \
   --network bridge=virbr0,model=virtio \
   --boot hd
 ```
-
+---
 # ZRAM Compressed & decompressed: 
 
 ***Another option for a RAM Disks is zram. When you place a file onto a zram RAM disk,
@@ -131,8 +131,10 @@ This can be helpful in circumstances where your system doesn't quite have the am
 $ sudo mkdir /tmp/ramdisk 
 ```
 
-# Change the ownership of that folder, so your user will have full access to the RAM disk when we later mount it:
-$ sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+- Change the ownership of that folder, so your user will have full access to the RAM disk when we later mount it:
+```bash
+sudo chown -R yourUserName:yourGroupName /tmp/ramdisk
+```
 
 # Make the folder immutable so you don't ever accidentally fill up your OS partition with data intended for the RAM disk:
 s$ udo chattr +i /tmp/ramdisk
