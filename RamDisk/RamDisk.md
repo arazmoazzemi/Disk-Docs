@@ -126,7 +126,7 @@ This can be helpful in circumstances where your system doesn't quite have the am
 ***Here's how to create a zram RAM disk:***
 
 
-- Make a folder to which you will mount your RAM disk:
+- 1. Make a folder to which you will mount your RAM disk:
 ```bash
 $ sudo mkdir /tmp/ramdisk 
 ```
