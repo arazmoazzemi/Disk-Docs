@@ -6,7 +6,6 @@ Copy source images from windows host to linux host:
 scp tar -xfv PNET_4.2.10.ova <user@password:/home/it>
 ```
 
-
 Convert disk images on linux host:
 
 ```bash
