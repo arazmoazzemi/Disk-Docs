@@ -1,18 +1,17 @@
 ### Install and configure DRBD on twn nodes:
 
-```
+```bash
 yum install nano -y
 ```
 
-```
+```bash
 nano /etc/hosts
-
 
 172.16.100.2 drbd01
 172.16.100.3 drbd02
 ```
 
-```
+```bash
 yum install ntp -y
 timedatectl set-timezone Asia/Tehran
 ntpdate pool.ntp.org
@@ -20,7 +19,7 @@ service ntpd start
 systemctl enable ntpd.service
 ```
 
-```
+```bash
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org
 rpm -ivh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 
@@ -32,7 +31,7 @@ yum info *drbd* | grep Name
 yum -y install drbd90-utils kmod-drbd90
 ```
 
-```
+```bash
 #Firewall_Configuration
 #Disable_SELINUX
 
@@ -61,7 +60,7 @@ firewall-cmd --add-port 7789/tcp --permanent
 firewall-cmd --reload
 ```
 
-```
+```bash
 modprobe drbd
 lsmod | grep -i drbd
 echo drbd > /etc/modules-load.d/drbd.conf
@@ -78,7 +77,7 @@ systemctl status drbd.service
 
 ```
 
-```
+```bash
 cd /etc/drbd.d/
 
 nano mydata.res
@@ -106,11 +105,11 @@ resource mydata {
 
 ```
 
-```
+```bash
 mv /etc/drbd.d/global_common.conf /etc/drbd.d/global_common.conf.bak
 ```
 
-```
+```bash
 nano /etc/drbd.d/global_common.conf
 
 global {
@@ -154,13 +153,13 @@ common {
 ---
 # Boath nodes:
 
-```
+```bash
 drbdadm create-md mydata
 drbdadm up mydata
 ```
 
 #Primary_node
-```
+```bash
 sudo drbdadm primary mydata --force 
 
 sudo drbdadm status mydata
@@ -168,27 +167,29 @@ drbdadm -- --overwrite-data-of-peer primary all
 
 cat /proc/drbd
 
-
 systemctl status drbd.service
+
 ```
 
 
 ### Troubleshooting
-```
+
+```bash
 #on_both_node
 #sudo drbdadm down mydata
 #on_master_node
 
 sudo drbdadm up mydata
 ```
-```
+
+```bash
 #host2
 drbdadm create-md mydata
 drbdadm up mydata
 ```
 
 ### Re-sync:
-```
+```bash
 drbdadm secondary all
 drbdadm disconnect all
 
@@ -206,7 +207,8 @@ drbdadm status
 
 
 ### troubleshoot Bandwith
-```
+
+```bash
 drbdadm -V
 
 drbdadm disconnect all
@@ -238,14 +240,14 @@ net {
 
 ```
 
-```
+```bash
 #all_nodes
 drbdadm adjust mydata
 ```
 
 ### Make a file system
 
-```
+```bash
 #Host1
 sudo mkfs.xfs /dev/drbd0
 #host1&host2
@@ -307,7 +309,7 @@ pcs status
 
 ### Cluster_service_configuration:
 
-```
+```bash
 pcs cluster cib cluster_config
 pcs -f cluster_config property set stonith-enabled=false
 pcs -f cluster_config property set no-quorum-policy=ignore
@@ -316,7 +318,7 @@ pcs -f cluster_config resource defaults resource-stickiness=200
 
 ### Resource&clone_drbd_volume:
 
-```
+```bash
 pcs -f cluster_config resource create nfs01-vol ocf:linbit:drbd \
   drbd_resource=mydata \
   op monitor interval=30s
@@ -329,7 +331,7 @@ pcs -f cluster_config resource master nfs01-clone nfs01-vol \
 
 ### Cluster_Resource_for_filesystem:
 
-```
+```bash
 pcs -f cluster_config resource create nfs01_fs Filesystem \
   device="/dev/drbd0" \
   directory="/root/replicated" \
@@ -344,7 +346,7 @@ pcs -f cluster_config constraint order promote nfs01-clone then start nfs01_fs
 
 ### Floating_service_ip_used_for_NFS
 
-```
+```bash
 pcs -f cluster_config resource create nfs_vip01 ocf:heartbeat:IPaddr2 \
  ip=172.16.100.100 cidr_netmask=24 \
  op monitor interval=30s
@@ -355,7 +357,7 @@ pcs -f cluster_config constraint order nfs01_fs then nfs_vip01
 
 ### Resource_for_nfs_service:
 
-```
+```bash
 pcs -f cluster_config resource create nfs-service nfsserver nfs_shared_infodir=/root/replicated nfs_ip=172.16.100.100
 pcs -f cluster_config constraint colocation add nfs-service with nfs_vip01 INFINITY
 pcs -f cluster_config constraint order nfs_vip01 then nfs-service
@@ -363,7 +365,7 @@ pcs -f cluster_config constraint order nfs_vip01 then nfs-service
 
 ### NFS_export_Resources:
 
-```
+```bash
 pcs -f cluster_config resource create nfs-export01 exportfs clientspec=172.16.100.0/24 options=rw,sync,no_root_squash,no_subtree_check directory=/root/replicated fsid=0
 pcs -f cluster_config constraint colocation add nfs-export01 with nfs-service INFINITY
 pcs -f cluster_config constraint order nfs-service then nfs-export01
@@ -393,7 +395,7 @@ nano /etc/fstab
 
 ### split_brain:
 
-```
+```bash
 sudo journalctl | grep Split-Brain
 
 drbdadm disconnect mydata
@@ -413,16 +415,5 @@ drbdadm adjust mydata
 drbdadm adjust mydata
 
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 
