@@ -1,3 +1,4 @@
+### Install and configure DRBD on twn nodes:
 
 ```
 yum install nano -y
