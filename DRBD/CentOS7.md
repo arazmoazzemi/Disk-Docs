@@ -204,13 +204,13 @@ drbdadm status
 ```
 
 
-#troubleshot_Bandwith
-
+### troubleshoot Bandwith
+```
 drbdadm -V
 
 drbdadm disconnect all
 
-#ON BOTH NODES
+# ON BOTH NODES
 nano /var/lib/drbd.d/drbdmanage_global_common.conf 
 
 # it must be content of /var/lib/drbd.d/drbdmanage_global_common.conf !!!!
@@ -235,20 +235,21 @@ net {
 
 /etc/init.d/drbd restart
 
----------------------------------------------------------------------------------------
+```
 
+```
 #all_nodes
 drbdadm adjust mydata
+```
 
----------------------------------------------------------------------------------------
+### Make a file system
+
+```
 #Host1
-
 sudo mkfs.xfs /dev/drbd0
-
 #host1&host2
 
 mkdir -p /root/replicated
-
 
 #mount /dev/drbd0 /root/replicated/
 #umount /dev/drbd0 /root/replicated/
@@ -262,17 +263,17 @@ drbdadm secondary mydata
 
 drbdadm status mydata
 
+```
+---
+---
 
+### Setup Pacemaker HA cluster-
 
+---
+---
+### [Help lnk](https://www.canarytek.com/2017/09/06/DRBD_NFS_Cluster.html)
 
-
-
-
--------Setup Pacemaker HA cluster----------------------------------------------------------------------
-
-https://www.canarytek.com/2017/09/06/DRBD_NFS_Cluster.html
-
-
+```bash
 yum install nfs-utils lvm2 mc corosync pcs pacemaker fence-agents-all  resource-agents psmisc pwgen policycoreutils-python -y
 
 firewall-cmd --permanent --add-service=high-availability
@@ -301,8 +302,10 @@ pcs cluster setup --start --name mycluster drbd01 drbd02
 pcs cluster start --all
 
 pcs status
+```
 
------------------Cluster_service_configuration-------------------------------------------------------------------------------
+### Cluster_service_configuration:
+```
 
 
 pcs cluster cib cluster_config
@@ -312,7 +315,7 @@ pcs -f cluster_config property set no-quorum-policy=ignore
 
 
 pcs -f cluster_config resource defaults resource-stickiness=200
-
+```
 
 ------------Resource&clone_drbd_volume----------------------------------------------------------------------------------------
 
