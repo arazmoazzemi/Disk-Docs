@@ -187,17 +187,19 @@ drbdadm connect all
 drbdadm status 
 ```
 
---------------------------------------------------------------------------------------
-#troubleshot_Bandwith
 
+### troubleshot_Bandwith
+
+```
 drbdadm -V
-
 drbdadm disconnect all
 
-#ON BOTH NODES
+# ON BOTH NODES
+
 nano /var/lib/drbd.d/drbdmanage_global_common.conf 
 
 # it must be content of /var/lib/drbd.d/drbdmanage_global_common.conf !!!!
+
 common {
 disk {
         on-io-error             detach;
@@ -216,28 +218,36 @@ net {
 }
 }
 
+```
 
+```
 /etc/init.d/drbd restart
+```
 
----------------------------------------------------------------------------------------
+```
 
-#all_nodes
+### all_nodes
+
+```
 drbdadm adjust mydata
+```
 
----------------------------------------------------------------------------------------
-#Host1
+### Create file system
+
+```
+# Host1
 
 sudo mkfs.xfs /dev/drbd0
 
-#host1&host2
+# host1&host2
 
 mkdir -p /root/replicated
 
 
-#mount /dev/drbd0 /root/replicated/
-#umount /dev/drbd0 /root/replicated/
+# mount /dev/drbd0 /root/replicated/
+# umount /dev/drbd0 /root/replicated/
 
-#fstab
+# fstab
 #/dev/drbd0 /root/replicated xfs defaults 0 0
 
 Again_NOTE!_at_host_1==========>before_cluster_configuratiom_two_host=>secondaye
@@ -246,7 +256,7 @@ drbdadm secondary mydata
 
 drbdadm status mydata
 
-
+```
 
 
 
