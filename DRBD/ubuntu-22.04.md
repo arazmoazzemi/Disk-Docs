@@ -63,7 +63,9 @@ common {
 
 ```
 
+### Or use below config:
 
+```
 global {
      usage-count no;
 }
@@ -100,8 +102,9 @@ common {
      }
 }
 
+```
 
------------------------------------------------------------------------------
+```
 cd /etc/drbd.d/
 
 nano mydata.res
@@ -126,17 +129,18 @@ resource mydata {
  connection-mesh {
   hosts drbd01 drbd02;
  }
-----------------------------------------------------------------------------------
+
+```
 
 
-
--------------------------------------------------------------------------------------
-#Host1
-
+### 2 nodes:
+```
 drbdadm create-md mydata
 drbdadm up mydata
+```
 
-#Primary_node
+### Run at primary_node
+```
 sudo drbdadm primary mydata --force 
 
 sudo drbdadm status mydata
@@ -146,32 +150,33 @@ cat /proc/drbd
 
 
 systemctl status drbd.service
+```
 
----if_f_error----------------------------------------------
-on_both_node
+### If faced with some errors:
+```
+# on_both_node
 
-#sudo drbdadm down mydata
+sudo drbdadm down mydata
 
-#on_master_node
+# on_master_node
 
 sudo drbdadm up mydata
----------------------------------------------------------------------------------------
-#host2
+
+```
+```
+# host2
 
 drbdadm create-md mydata
 drbdadm up mydata
+```
 
 
-
-
---------------------------------------------------------------------------------------
-#re-sync
-
+### Re-sync commands:
+```
 drbdadm secondary all
 drbdadm disconnect all
 
 drbdadm status
-
 
 drbdadm invalidate all
 
@@ -180,6 +185,7 @@ drbdadm status
 drbdadm connect all
 
 drbdadm status 
+```
 
 --------------------------------------------------------------------------------------
 #troubleshot_Bandwith
