@@ -305,20 +305,17 @@ pcs status
 ```
 
 ### Cluster_service_configuration:
+
 ```
-
-
 pcs cluster cib cluster_config
-
 pcs -f cluster_config property set stonith-enabled=false
 pcs -f cluster_config property set no-quorum-policy=ignore
-
-
 pcs -f cluster_config resource defaults resource-stickiness=200
 ```
 
-------------Resource&clone_drbd_volume----------------------------------------------------------------------------------------
+### Resource&clone_drbd_volume:
 
+```
 pcs -f cluster_config resource create nfs01-vol ocf:linbit:drbd \
   drbd_resource=mydata \
   op monitor interval=30s
@@ -327,9 +324,11 @@ pcs -f cluster_config resource master nfs01-clone nfs01-vol \
   master-max=1 master-node-max=1 \
   clone-max=2 clone-node-max=1 \
   notify=true
+```
 
----------------Cluster_Resource_for_filesystem------------------------------------------------------------------------------------
+### Cluster_Resource_for_filesystem:
 
+```
 pcs -f cluster_config resource create nfs01_fs Filesystem \
   device="/dev/drbd0" \
   directory="/root/replicated" \
@@ -340,56 +339,47 @@ pcs -f cluster_config constraint colocation add nfs01_fs with nfs01-clone \
   INFINITY with-rsc-role=Master
 
 pcs -f cluster_config constraint order promote nfs01-clone then start nfs01_fs
+```
 
+### Floating_service_ip_used_for_NFS
 
------------------Floating_service_ip_used_for_NFS--------------------------------------------------------------------------------------------------------------------
-
-
+```
 pcs -f cluster_config resource create nfs_vip01 ocf:heartbeat:IPaddr2 \
  ip=172.16.100.100 cidr_netmask=24 \
  op monitor interval=30s
 
 pcs -f cluster_config constraint colocation add nfs_vip01 with nfs01_fs INFINITY
-
 pcs -f cluster_config constraint order nfs01_fs then nfs_vip01
+```
 
+### Resource_for_nfs_service:
 
------------------Resource_for_nfs_service---------------------------------------------------------------------------------------------------------------
-
+```
 pcs -f cluster_config resource create nfs-service nfsserver nfs_shared_infodir=/root/replicated nfs_ip=172.16.100.100
 pcs -f cluster_config constraint colocation add nfs-service with nfs_vip01 INFINITY
 pcs -f cluster_config constraint order nfs_vip01 then nfs-service
+```
 
+### NFS_export_Resources:
 
----------------NFS_export_Resources----------------------------------------------------------------------------------------------
-
+```
 pcs -f cluster_config resource create nfs-export01 exportfs clientspec=172.16.100.0/24 options=rw,sync,no_root_squash,no_subtree_check directory=/root/replicated fsid=0
 pcs -f cluster_config constraint colocation add nfs-export01 with nfs-service INFINITY
 pcs -f cluster_config constraint order nfs-service then nfs-export01
+```
 
+### Verify that defined resources and constraints are correct:
 
----------Verify that defined resources and constraints are correct-----------------------------------------------------------
-
+```bash
 pcs -f cluster_config resource show
-
 pcs -f cluster_config constraint
-
-
 pcs cluster cib-push cluster_config
-
-
 pcs cluster start --all
 pcs cluster enable --all
 
-
 #pcs resource cleanup
 
-
-
 mount 172.16.100.100:/root/replicated/105
-
-
-
 
 #client
 rsize=8192,wsize=8192,acl,udp,nfsvers=3,rw
@@ -398,26 +388,21 @@ mount 192.168.31.60:/root/replicated/ /mnt/
 
 nano /etc/fstab
 172.16.100.100:/root/replicated /mnt/ nfs rw,hard,intr 0 0
+```
 
+### split_brain:
 
-
--------------------------split_brain---------------------------------------------------------------
-
+```
 sudo journalctl | grep Split-Brain
-
-
 
 drbdadm disconnect mydata
 drbdadm secondary mydata
 drbdadm -- --discard-my-data mydata connect mydata
 
-
-
 drbdadm primary mydata
 drbdadm connect mydata
 
 systemctl restart drbd.service
-
 
 drbdadm invalidate mydata
 drbdadm down mydata
@@ -426,7 +411,7 @@ drbdadm adjust mydata
 
 drbdadm adjust mydata
 
-
+```
 
 
 
