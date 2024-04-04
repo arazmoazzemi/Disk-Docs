@@ -1,8 +1,4 @@
-https://linbit.com/linbit-software-download-page-for-linstor-and-drbd-linux-driver/#drbd-9
-wget https://pkg.linbit.com//downloads/drbd/9/drbd-9.2.8.tar.gz
-tar -xzvf drbd-9.2.8.tar.gz
-cd drbd-9.2.8/
-
+Install DRBD between two nodes ubuntu 22.04
 
 ```
 nano /etc/hosts
@@ -24,29 +20,35 @@ apt install drbd-dkms drbd-utils -y
 modprobe drbd
 ```
 
------Very_importatnt(Prevent_package_Installation_error)---------------------------------------------------------------------
 
+```
 apt install ntp -y
 timedatectl set-timezone Asia/Tehran
 apt install ntpdate 
 ntpdate pool.ntp.org
 service ntp start
 systemctl enable ntp
---------------------------------------------------------------
+```
 
-
+```
 iptables -L
 
 iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
 iptables -F
+```
 
+```
 firewall-cmd --add-port 7789/tcp --permanent
 firewall-cmd --reload
-------------------------------------------------------------
+```
 
+```
 cp /etc/drbd.d/global_common.conf /etc/drbd.d/global_common.conf.bak
+```
+
+```
 nano /etc/drbd.d/global_common.conf 
 
 global {
@@ -59,7 +61,7 @@ common {
     }
 }
 
-------------------------------------------------------------------------
+```
 
 
 global {
