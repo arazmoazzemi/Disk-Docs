@@ -150,9 +150,7 @@ common {
 
 ```
 
-
-
--------------------------------------------------------------------------------------
+---
 # Boath nodes:
 
 ```
@@ -174,26 +172,22 @@ systemctl status drbd.service
 ```
 
 
----if_f_error----------------------------------------------
-on_both_node
-
+### Troubleshooting
+```
+#on_both_node
 #sudo drbdadm down mydata
-
 #on_master_node
 
 sudo drbdadm up mydata
----------------------------------------------------------------------------------------
+```
+```
 #host2
-
 drbdadm create-md mydata
 drbdadm up mydata
+```
 
-
-
-
---------------------------------------------------------------------------------------
-#re-sync
-
+### Re-sync:
+```
 drbdadm secondary all
 drbdadm disconnect all
 
@@ -207,8 +201,9 @@ drbdadm status
 drbdadm connect all
 
 drbdadm status 
+```
 
---------------------------------------------------------------------------------------
+
 #troubleshot_Bandwith
 
 drbdadm -V
