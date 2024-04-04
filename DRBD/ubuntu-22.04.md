@@ -9,7 +9,7 @@ add-apt-repository ppa:linbit/linbit-drbd9-stack
 ls -alh /etc/apt/sources.list.d/
 apt update
 apt install linux-headers-`uname -r`
-apt install drbd-dkms drbd-utils
+apt install drbd-dkms drbd-utils -y
 ```
 
 
