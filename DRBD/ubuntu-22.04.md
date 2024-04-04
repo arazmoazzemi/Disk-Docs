@@ -3,14 +3,14 @@ wget https://pkg.linbit.com//downloads/drbd/9/drbd-9.2.8.tar.gz
 tar -xzvf drbd-9.2.8.tar.gz
 cd drbd-9.2.8/
 
-
+```
 apt install software-properties-common apt-transport-https ca-certificates -y
 add-apt-repository ppa:linbit/linbit-drbd9-stack
 ls -alh /etc/apt/sources.list.d/
 apt update
 apt install linux-headers-`uname -r`
 apt install drbd-dkms drbd-utils
-
+```
 
 
 sudo apt-get install drbd9-utils
