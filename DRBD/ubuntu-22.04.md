@@ -3,6 +3,14 @@ wget https://pkg.linbit.com//downloads/drbd/9/drbd-9.2.8.tar.gz
 tar -xzvf drbd-9.2.8.tar.gz
 cd drbd-9.2.8/
 
+
+```
+nano /etc/hosts
+
+172.16.100.2 drbd01
+172.16.100.3 drbd02
+```
+
 ```
 apt install software-properties-common apt-transport-https ca-certificates -y
 add-apt-repository ppa:linbit/linbit-drbd9-stack
@@ -12,19 +20,9 @@ apt install linux-headers-`uname -r`
 apt install drbd-dkms drbd-utils -y
 ```
 
-
-sudo apt-get install drbd9-utils
-
-
-nano /etc/hosts
-
-172.16.100.2 drbd01
-172.16.100.3 drbd02
-
-sudo apt install drbd-utils -y
-sudo apt install dkms
+```
 modprobe drbd
-
+```
 
 -----Very_importatnt(Prevent_package_Installation_error)---------------------------------------------------------------------
 
