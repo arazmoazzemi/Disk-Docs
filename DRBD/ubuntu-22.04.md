@@ -224,8 +224,6 @@ net {
 /etc/init.d/drbd restart
 ```
 
-```
-
 ### all_nodes
 
 ```
